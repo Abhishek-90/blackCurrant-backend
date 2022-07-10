@@ -1,8 +1,8 @@
 const express = require("express");
 const serverless = require("serverless-http");
-const db = require('../db.mjs');
-const admin = require('../Controller/admin.mjs');
-const user = require('../Controller/user.mjs');
+const db = require('../db.js');
+const admin = require('../Controller/admin.js');
+const user = require('../Controller/user.js');
 
 const app = express();
 

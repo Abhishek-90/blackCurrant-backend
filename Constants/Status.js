@@ -1,0 +1,5 @@
+exports.OK=200
+exports.CREATED=201
+exports.UNAUTHORIZED=401
+exports.BADREQUEST=400
+exports.NOTFOUND=404

@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
+const mongoose = require('mongoose');
 
-const aadharSchema = new Schema({
+const aadharSchema = new mongoose.Schema({
     aadharNumber:{
         type: String,
         required: true,
@@ -37,4 +36,5 @@ const aadharSchema = new Schema({
     }
 })
 
-export default mongoose.model("aadhar", aadharSchema);
+const aadhar = mongoose.model("aadhar", aadharSchema)
+module.exports = { aadhar };
