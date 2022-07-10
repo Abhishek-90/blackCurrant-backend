@@ -41,7 +41,7 @@ const addAadhar = async (req, res) => {
 
   console.log(aadhar);
   const response = await aadhar.aadhar.create({
-    aadharNumber: "1234567891",
+    aadharNumber: req.body.aadharNumber,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
