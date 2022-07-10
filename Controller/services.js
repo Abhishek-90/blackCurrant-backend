@@ -41,7 +41,7 @@ const addAadhar = async (req, res) => {
 
   console.log(aadhar);
   const response = await aadhar.aadhar.create({
-    aadharNumber: req.body.aadharNumber,
+    aadharNumber: generateAadharNumber(),
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
@@ -63,5 +63,17 @@ const addAadhar = async (req, res) => {
       .json({ Message: "Invalid Credentials", status: "fail" });
   }
 };
+
+const generateAadharNumber = () => {
+  const characters ='0123456789';
+
+    let result = ' ';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < 12; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+
+    return result;
+}
+}
 
 module.exports = { login, addAadhar };
