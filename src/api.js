@@ -3,9 +3,10 @@ const serverless = require("serverless-http");
 const db = require('../db.js');
 const admin = require('../Controller/admin.js');
 const user = require('../Controller/user.js');
+const cors = require('cors');
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 5000
