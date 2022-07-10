@@ -40,18 +40,20 @@ const addAadhar = async (req, res) => {
   }
 
   const phoneNumberExists = await aadhar.aadhar.findOne({
-    phoneNumber: req.params.phoneNumber,
+    phoneNumber: req.body.phoneNumber,
   });
 
-  if (phoneNumberExists) {
+  console.log(phoneNumberExists);
+
+  if (phoneNumberExists !== null) {
     return res
       .status(status.BADREQUEST)
       .json({ Message: "Phone Number Exists", numberExists: true });
   }
 
-  const emailExists = await aadhar.aadhar.findOne({ email: req.params.email });
+  const emailExists = await aadhar.aadhar.findOne({ email: req.body.email });
 
-  if (emailExists) {
+  if (emailExists !== null) {
     return res
       .status(status.BADREQUEST)
       .json({ Message: "Email Exists", emailExists: true });
