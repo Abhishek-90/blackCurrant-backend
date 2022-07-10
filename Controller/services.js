@@ -39,7 +39,22 @@ const addAadhar = async (req, res) => {
     return res.status(status.BADREQUEST).send({ errors });
   }
 
-  console.log(aadhar);
+  const phoneNumberExists =  await aadhar.aadhar.findOne({ phoneNumber: req.params.phoneNumber});
+
+  if(phoneNumberExists) {
+    return res
+      .status(status.BADREQUEST)
+      .json({ Message: "Phone Number Exists", 'numberExists':true });
+  }
+
+  const emailExists =  await aadhar.aadhar.findOne({ email: req.params.email});
+
+  if(emailExists) {
+    return res
+      .status(status.BADREQUEST)
+      .json({ Message: "Email Exists", 'emailExists':true });
+  }
+
   const response = await aadhar.aadhar.create({
     aadharNumber: generateAadharNumber(),
     firstName: req.body.firstName,
@@ -65,7 +80,7 @@ const addAadhar = async (req, res) => {
 };
 
 const generateAadharNumber = () => {
-  const characters ='0123456789';
+  const characters = '0123456789';
 
     let result = ' ';
     const charactersLength = characters.length;
