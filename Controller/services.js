@@ -39,20 +39,22 @@ const addAadhar = async (req, res) => {
     return res.status(status.BADREQUEST).send({ errors });
   }
 
-  const phoneNumberExists =  await aadhar.aadhar.findOne({ phoneNumber: req.params.phoneNumber});
+  const phoneNumberExists = await aadhar.aadhar.findOne({
+    phoneNumber: req.params.phoneNumber,
+  });
 
-  if(phoneNumberExists) {
+  if (phoneNumberExists) {
     return res
       .status(status.BADREQUEST)
-      .json({ Message: "Phone Number Exists", 'numberExists':true });
+      .json({ Message: "Phone Number Exists", numberExists: true });
   }
 
-  const emailExists =  await aadhar.aadhar.findOne({ email: req.params.email});
+  const emailExists = await aadhar.aadhar.findOne({ email: req.params.email });
 
-  if(emailExists) {
+  if (emailExists) {
     return res
       .status(status.BADREQUEST)
-      .json({ Message: "Email Exists", 'emailExists':true });
+      .json({ Message: "Email Exists", emailExists: true });
   }
 
   const response = await aadhar.aadhar.create({
@@ -80,15 +82,14 @@ const addAadhar = async (req, res) => {
 };
 
 const generateAadharNumber = () => {
-  const characters = '0123456789';
+  const characters = "0123456789";
 
-    let result = '';
-    const charactersLength = characters.length;
-    for ( let i = 0; i < 12; i++ ) 
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  let result = "";
+  const charactersLength = characters.length;
+  for (let i = 0; i < 12; i++)
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
 
-    return result;
-
-}
+  return result;
+};
 
 module.exports = { login, addAadhar };
